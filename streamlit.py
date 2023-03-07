@@ -4,14 +4,23 @@
 # In[1]:
 
 
-import streamlit as st
+st.markdown("<h1 style='text-align: center;'>Formulario</h1>", unsafe_allow_html=True)
 
+with st.form("Datos de Usuario"):
+    email = st.text_input("Correo electrónico")
+    password = st.text_input("Contraseña", type="password")
+    puesto = st.selectbox("Puesto de trabajo", ["Gerente", "Analista", "Desarrollador"])
+    cantidad_hojas = st.slider("Cantidad de hojas", min_value=1, max_value=10, value=5)
 
-# In[2]:
+    submitted = st.form_submit_button("Enviar")
 
-
-st.markdown("<h1 style='text-align: center;'>Web Scrapper</h1",unsafe_allow_html=True)
-with st.form("Search"):
-    keyword = st.text_input("Enter your keyword")
-    st.form_submit_button("Search")
+if submitted:
+    # Guardar los datos ingresados en variables
+    datos_usuario = {
+        "email": email,
+        "password": password,
+        "puesto": puesto,
+        "cantidad_hojas": cantidad_hojas
+    }
+    st.write("Los datos ingresados son:", datos_usuario)
 
